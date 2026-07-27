@@ -14,5 +14,6 @@
    - 新カードの♡ボタンは data-n="MMDD-連番"(例: data-n="0728-1")の新しい値にする(♡は共有カウンターなので使い回し禁止)。
    - 日付ラベル(<span class="time">)はその記事の日付にする。
 4. 触ってはいけない場所: 冒頭の統計カード/種明かし(truth)セクション/おまじないチェックリスト/自動更新カード3枚(autoWeatherText・autoQuakeText・apodImgのあるカード)/ティッカーのHTML(JSが自動更新する)/_redirects/sw.js/manifest.webmanifest/アイコンpng/scriptsと.github配下。
-5. 差し替え後、git add -A → commit(メッセージ例: news: 記事更新 2026-07-28 06:00)→ push まで実行し、pushの成功を確認して終了する。
-6. 確認できた事実だけを書く。推測や創作は禁止。
+5. sitemap.xml の <lastmod> をその日の日付(YYYY-MM-DD)に書き換える。robots.txt はそのままでよい。
+6. 差し替え後、git add -A → commit(メッセージ例: news: 記事更新 2026-07-28 06:00)→ push まで実行し、pushの成功を確認して終了する。
+7. 確認できた事実だけを書く。推測や創作は禁止。
