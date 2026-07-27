@@ -1,0 +1,28 @@
+name: news-update
+
+on:
+  schedule:
+    # JSTで 朝6時 / 昼12時 / 夕18時 / 夜22時 (UTC表記)
+    - cron: "0 21,3,9,13 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: ニュースを取得して news-auto.json を更新
+        run: node scripts/update-news.mjs
+      - name: 変更があればコミットして公開
+        run: |
+          git config user.name "news-kawaii-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "auto: ニュース自動更新"
+          git push
