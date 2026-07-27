@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News kawaii | ニュースが、かわいく流れてくる。</title>
+<meta name="description" content="ニュースが、かわいく流れてくる。そして『さっきの数字は、ほんとうです』——事実でも伝え方しだいで誤って伝わることを体験できる、メディアリテラシーのためのかわいいニュースサイト。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="News kawaii">
+<meta property="og:title" content="News kawaii | ニュースが、かわいく流れてくる。">
+<meta property="og:description" content="2人に1人が使っている!(※聞いたのは2人) 事実でも伝え方しだいで誤って伝わる——自分の頭で考えてニュースを読むための、かわいいニュースサイト。">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#ffd9ea">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="News♡kawaii">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+<style>
+/* ============ base ============ */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --pink:#ff8fbf;
+  --pink-deep:#f0619c;
+  --pink-soft:#ffd9ea;
+  --pink-bg:#fff1f8;
+  --lav:#9d86e0;
+  --lav-deep:#7c66c2;
+  --lav-soft:#e7e0ff;
+  --sky:#6fc3f0;
+  --sky-soft:#daf1ff;
+  --mint:#63cfb4;
+  --mint-soft:#dcf7ef;
+  --lemon:#ffe89e;
+  --ink:#6f5c86;
+  --ink-strong:#544471;
+  --ink-faint:#a795bd;
+  --card:#ffffff;
+  --radius:26px;
+  --shadow:0 10px 30px rgba(157,134,224,.18);
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'M PLUS Rounded 1c','Zen Maru Gothic','Hiragino Maru Gothic ProN','BIZ UDGothic',sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg,#fff1f8 0%,#f4efff 45%,#e9f6ff 100%);
+  overflow-x:hidden;
+  line-height:1.7;
+}
+.pop{font-family:'Hachi Maru Pop','M PLUS Rounded 1c',sans-serif;}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px;}
+img,svg{display:block;max-width:100%;}
+a{color:var(--pink-deep);}
+
+/* ============ decorations ============ */
+.deco{position:absolute;pointer-events:none;user-select:none;z-index:0;}
+.float-slow{animation:floaty 7s ease-in-out infinite;}
+.float-mid{animation:floaty 5s ease-in-out infinite;}
+.float-fast{animation:floaty 3.8s ease-in-out infinite;}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-16px) rotate(4deg);}}
+.spin-slow{animation:spinny 14s linear infinite;}
+@keyframes spinny{to{transform:rotate(360deg);}}
+.twinkle{animation:twinkle 2.6s ease-in-out infinite;}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8);}50%{opacity:1;transform:scale(1.15);}}
+
+/* ============ top bar ============ */
+.topbar{
+  position:relative;z-index:5;
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1040px;margin:0 auto;padding:18px 20px 6px;
+}
+.topbar .brand{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--pink-deep);font-size:1.05rem;}
+.brand-badge{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pink) 0%,var(--lav) 100%);
+  display:grid;place-items:center;color:#fff;font-size:1.1rem;
+  box-shadow:0 4px 12px rgba(240,97,156,.35);
+}
+.topbar .date-chip{
+  background:#fff;border:2px dashed var(--pink-soft);color:var(--ink-faint);
+  border-radius:999px;padding:6px 16px;font-size:.8rem;font-weight:700;white-space:nowrap;
+}
+
+/* ============ ticker ============ */
+.ticker{
+  position:relative;z-index:5;
+  margin:14px auto 0;max-width:1040px;
+  background:#fff;border-radius:999px;
+  border:3px solid var(--pink-soft);
+  overflow:hidden;display:flex;align-items:center;
+  box-shadow:var(--shadow);
+}
+.ticker-label{
+  flex-shrink:0;background:linear-gradient(135deg,var(--pink),var(--pink-deep));
+  color:#fff;font-weight:800;font-size:.8rem;
+  padding:10px 18px;border-radius:999px;margin:4px;
+  white-space:nowrap;
+}
+.ticker-view{overflow:hidden;flex:1;}
+.ticker-track{
+  display:inline-flex;gap:3rem;white-space:nowrap;
+  padding:8px 0;font-size:.86rem;font-weight:700;color:var(--ink);
+  animation:tick 38s linear infinite;
+}
+@keyframes tick{to{transform:translateX(-50%);}}
+
+/* ============ hero ============ */
+.hero{position:relative;text-align:center;padding:64px 20px 30px;z-index:1;}
+.hero-inner{position:relative;z-index:2;}
+.logo{
+  font-size:clamp(2.6rem,7vw,4.6rem);
+  font-weight:800;letter-spacing:.02em;line-height:1.15;
+}
+.logo span{display:inline-block;animation:bounce 2.4s ease-in-out infinite;}
+.logo span:nth-child(2n){animation-delay:.12s;}
+.logo span:nth-child(3n){animation-delay:.24s;}
+.logo span:nth-child(5n){animation-delay:.36s;}
+@keyframes bounce{0%,100%{transform:translateY(0);}30%{transform:translateY(-9px);}60%{transform:translateY(2px);}}
+.logo .l-news{color:var(--pink-deep);}
+.logo .l-heart{color:var(--pink);font-size:.8em;}
+.logo .l-kawaii{
+  background:linear-gradient(90deg,var(--lav-deep),var(--sky));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.tagline{
+  margin-top:14px;font-size:clamp(1rem,2.6vw,1.3rem);
+  font-weight:700;color:var(--ink);
+}
+.tagline .dot{color:var(--pink);}
+.hero-sub{margin-top:6px;font-size:.9rem;color:var(--ink-faint);font-weight:500;}
+
+/* ============ stats ============ */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px;margin:44px auto 0;max-width:900px;position:relative;z-index:2;}
+.stat-card{
+  background:var(--card);border-radius:var(--radius);
+  border:3px solid var(--pink-soft);
+  box-shadow:var(--shadow);
+  padding:28px 24px 22px;position:relative;
+  transition:transform .3s ease;
+}
+.stat-card:hover{transform:translateY(-6px) rotate(-.5deg);}
+.stat-card .ribbon{
+  position:absolute;top:-16px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--pink),var(--pink-deep));
+  color:#fff;font-size:.78rem;font-weight:800;
+  padding:6px 18px;border-radius:999px;white-space:nowrap;
+  box-shadow:0 4px 10px rgba(240,97,156,.3);
+}
+.stat-card.lav{border-color:var(--lav-soft);}
+.stat-card.lav .ribbon{background:linear-gradient(135deg,var(--lav),var(--lav-deep));box-shadow:0 4px 10px rgba(124,102,194,.3);}
+.stat-lead{font-size:.92rem;font-weight:700;color:var(--ink);margin-top:6px;}
+.stat-num{
+  font-size:clamp(2.4rem,6vw,3.4rem);font-weight:800;line-height:1.2;margin:6px 0 2px;
+  background:linear-gradient(90deg,var(--pink-deep),var(--lav-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat-num small{font-size:.45em;}
+.stat-note{font-size:.68rem;color:var(--ink-faint);margin-top:10px;font-weight:500;}
+.friends{display:flex;justify-content:center;gap:18px;margin-top:14px;}
+.friend{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:.72rem;font-weight:700;color:var(--ink-faint);}
+.friend .face{
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  font-size:2rem;background:var(--sky-soft);position:relative;
+  border:3px solid #fff;box-shadow:0 4px 12px rgba(111,92,134,.15);
+}
+.friend.user .face{background:var(--pink-soft);}
+.friend.user .face::after{
+  content:"📱";position:absolute;bottom:-6px;right:-8px;font-size:1.1rem;
+  background:#fff;border-radius:50%;padding:3px;box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+.friend .tag{border-radius:999px;padding:2px 10px;background:var(--sky-soft);}
+.friend.user .tag{background:var(--pink-soft);color:var(--pink-deep);}
+
+.scroll-cue{margin:46px auto 8px;display:inline-flex;flex-direction:column;align-items:center;gap:4px;color:var(--lav-deep);font-weight:800;font-size:.95rem;text-decoration:none;}
+.scroll-cue .arrow{font-size:1.5rem;animation:dip 1.6s ease-in-out infinite;}
+@keyframes dip{0%,100%{transform:translateY(0);}50%{transform:translateY(8px);}}
+
+/* ============ waves ============ */
+.wave{width:100%;height:70px;margin-bottom:-2px;}
+
+/* ============ news section ============ */
+.news{position:relative;background:#fff;padding:30px 0 70px;z-index:1;}
+.sec-head{text-align:center;margin-bottom:38px;position:relative;z-index:2;}
+.sec-chip{
+  display:inline-block;background:var(--lemon);color:#a8842b;
+  border-radius:999px;font-size:.78rem;font-weight:800;padding:6px 18px;letter-spacing:.08em;
+}
+.sec-title{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;color:var(--ink-strong);margin-top:12px;}
+.sec-title em{font-style:normal;color:var(--pink-deep);}
+.sec-sub{font-size:.9rem;color:var(--ink-faint);margin-top:6px;font-weight:500;}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:-12px 0 28px;position:relative;z-index:2;}
+.f-chip{
+  border:2px solid var(--pink-soft);background:#fff;border-radius:999px;
+  padding:7px 16px;font-weight:800;font-size:.8rem;color:var(--ink);
+  cursor:pointer;font-family:inherit;transition:all .2s ease;
+}
+.f-chip:hover{transform:translateY(-2px);}
+.f-chip.on{background:linear-gradient(135deg,var(--pink),var(--lav));color:#fff;border-color:var(--pink);box-shadow:0 6px 14px rgba(240,97,156,.3);}
+.f-chip:focus{outline:none;}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;position:relative;z-index:2;}
+.news-card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;
+  border:3px solid var(--pink-soft);
+  box-shadow:0 8px 22px rgba(157,134,224,.14);
+  display:flex;flex-direction:column;
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.news-card:hover{transform:translateY(-7px) rotate(.4deg);box-shadow:0 16px 34px rgba(157,134,224,.24);}
+.news-card:nth-child(3n+2){border-color:var(--lav-soft);}
+.news-card:nth-child(3n){border-color:var(--sky-soft);}
+.news-visual{
+  height:110px;display:grid;place-items:center;font-size:3rem;
+  background:linear-gradient(135deg,var(--pink-soft),var(--lav-soft));
+}
+.news-card:nth-child(3n+2) .news-visual{background:linear-gradient(135deg,var(--lav-soft),var(--sky-soft));}
+.news-card:nth-child(3n) .news-visual{background:linear-gradient(135deg,var(--sky-soft),var(--mint-soft));}
+.news-body{padding:18px 20px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.news-meta{display:flex;align-items:center;gap:8px;}
+.cat{
+  font-size:.68rem;font-weight:800;border-radius:999px;padding:3px 12px;
+  background:var(--pink-soft);color:var(--pink-deep);
+}
+.cat.lav{background:var(--lav-soft);color:var(--lav-deep);}
+.cat.sky{background:var(--sky-soft);color:#3e8fbe;}
+.cat.mint{background:var(--mint-soft);color:#2f9e83;}
+.cat.lemon{background:var(--lemon);color:#a8842b;}
+.time{font-size:.7rem;color:var(--ink-faint);font-weight:700;}
+.news-title{font-size:1.02rem;font-weight:800;color:var(--ink-strong);line-height:1.5;}
+.auto-badge{
+  font-size:.66rem;font-weight:800;border-radius:999px;padding:3px 10px;white-space:nowrap;
+  background:linear-gradient(135deg,var(--pink-soft),var(--lav-soft));color:var(--lav-deep);
+}
+.news-visual.apod{position:relative;overflow:hidden;}
+.news-visual.apod img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;
+}
+.news-text{font-size:.84rem;color:var(--ink);flex:1;}
+.news-foot{display:flex;align-items:center;justify-content:space-between;margin-top:6px;}
+.likes{font-size:.78rem;font-weight:800;color:var(--pink-deep);background:var(--pink-bg);border-radius:999px;padding:4px 12px;border:none;font-family:inherit;cursor:pointer;transition:transform .2s;}
+.likes:active{transform:scale(1.25);}
+.likes.liked{background:#ffd9ea;color:var(--pink-deep);}
+.more{font-size:.75rem;font-weight:800;color:var(--ink-faint);text-decoration:none;}
+
+/* ============ check section ============ */
+.check-sec{position:relative;background:linear-gradient(180deg,#eaf6ff 0%,#eef9ff 100%);padding:54px 0 34px;z-index:1;}
+
+/* ============ reveal section ============ */
+.truth{
+  position:relative;z-index:1;
+  background:linear-gradient(180deg,#efeaff 0%,#f6edff 55%,#ffeef6 100%);
+  padding:64px 0 46px;
+}
+.truth-card{
+  position:relative;z-index:2;
+  background:#fff;border-radius:34px;border:3px solid var(--lav-soft);
+  box-shadow:0 16px 44px rgba(124,102,194,.2);
+  padding:clamp(26px,5vw,48px);margin-bottom:30px;
+}
+.batsu{
+  width:92px;height:92px;margin:0 auto 18px;position:relative;
+  border-radius:50%;background:var(--pink-bg);
+  border:4px solid var(--pink);
+  display:grid;place-items:center;
+}
+.batsu::before,.batsu::after{
+  content:"";position:absolute;width:54px;height:10px;border-radius:99px;background:var(--pink-deep);
+}
+.batsu::before{transform:rotate(45deg);}
+.batsu::after{transform:rotate(-45deg);}
+.batsu-cap{text-align:center;font-size:.8rem;font-weight:800;color:var(--pink-deep);margin:-6px 0 16px;}
+.truth-title{text-align:center;font-size:clamp(1.3rem,3.6vw,1.8rem);font-weight:800;color:var(--ink-strong);}
+.truth-title em{font-style:normal;color:var(--pink-deep);}
+.truth-lead{text-align:center;font-size:.95rem;color:var(--ink);margin-top:8px;font-weight:500;}
+
+.compare{display:flex;flex-direction:column;gap:18px;margin-top:30px;}
+.compare-row{
+  display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;
+}
+.said,.truth-box{
+  border-radius:22px;padding:18px 20px;position:relative;
+}
+.said{background:var(--pink-bg);border:2px solid var(--pink-soft);}
+.truth-box{background:var(--lav-soft);border:2px solid #d5c8ff;}
+.mini-chip{
+  display:inline-block;font-size:.68rem;font-weight:800;border-radius:999px;padding:3px 12px;margin-bottom:8px;
+}
+.said .mini-chip{background:var(--pink);color:#fff;}
+.truth-box .mini-chip{background:var(--lav-deep);color:#fff;}
+.fact-stamp{
+  position:absolute;top:-14px;right:-6px;
+  width:60px;height:60px;border-radius:50%;
+  background:#fff;border:2px dashed var(--pink);
+  color:var(--pink-deep);font-size:.62rem;font-weight:800;
+  display:grid;place-items:center;text-align:center;line-height:1.35;
+  transform:rotate(10deg);box-shadow:0 4px 10px rgba(240,97,156,.2);
+}
+.said p{font-weight:800;color:var(--pink-deep);font-size:1.02rem;line-height:1.55;}
+.truth-box p{font-weight:800;color:var(--ink-strong);font-size:1.02rem;line-height:1.55;}
+.truth-box small{display:block;font-size:.78rem;font-weight:500;color:var(--ink);margin-top:6px;}
+.compare-arrow{display:grid;place-items:center;font-size:1.4rem;color:var(--ink-faint);}
+
+.counter-gag{
+  margin-top:34px;text-align:center;background:var(--pink-bg);
+  border-radius:26px;padding:26px 20px;border:2px dashed var(--pink-soft);
+}
+.counter-gag .label{font-size:.85rem;font-weight:800;color:var(--ink-faint);}
+.big-fake{
+  font-size:clamp(2rem,6vw,3.2rem);font-weight:800;color:var(--ink-faint);
+  text-decoration:line-through;text-decoration-color:var(--pink-deep);text-decoration-thickness:6px;
+  opacity:.55;line-height:1.3;
+}
+.big-real{
+  font-size:clamp(3rem,9vw,5rem);font-weight:800;line-height:1.2;
+  background:linear-gradient(90deg,var(--pink-deep),var(--lav-deep));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.big-real small{font-size:.3em;}
+.counter-gag .note{font-size:.8rem;font-weight:700;color:var(--ink);margin-top:8px;}
+
+.lesson{
+  position:relative;z-index:2;text-align:center;
+  background:#fff;border-radius:34px;border:3px solid var(--pink-soft);
+  box-shadow:0 16px 44px rgba(240,97,156,.16);
+  padding:clamp(30px,5vw,52px);margin-bottom:30px;
+}
+.lesson h3{font-size:clamp(1.25rem,3.4vw,1.7rem);font-weight:800;color:var(--ink-strong);line-height:1.7;}
+.lesson h3 .marker{
+  background:linear-gradient(transparent 62%,var(--lemon) 62%);
+  padding:0 2px;
+}
+.lesson .big-msg{
+  margin-top:22px;font-size:clamp(1.5rem,4.4vw,2.3rem);font-weight:800;line-height:1.6;color:var(--pink-deep);
+}
+.lesson .big-msg .lav-txt{color:var(--lav-deep);}
+.lesson p.small{margin-top:16px;font-size:.9rem;color:var(--ink);font-weight:500;}
+
+/* ============ checklist ============ */
+.check-card{
+  position:relative;z-index:2;
+  background:#fff;border-radius:34px;border:3px solid var(--sky-soft);
+  box-shadow:0 16px 44px rgba(111,195,240,.18);
+  padding:clamp(26px,5vw,44px);
+}
+.check-head{text-align:center;margin-bottom:22px;}
+.check-head h3{font-size:clamp(1.2rem,3.2vw,1.55rem);font-weight:800;color:var(--ink-strong);}
+.check-head p{font-size:.85rem;color:var(--ink-faint);font-weight:700;margin-top:4px;}
+.checks{display:flex;flex-direction:column;gap:12px;max-width:640px;margin:0 auto;}
+.check-item{
+  display:flex;align-items:center;gap:14px;
+  background:var(--sky-soft);border-radius:18px;padding:14px 18px;cursor:pointer;
+  transition:transform .2s ease,background .2s ease;
+  border:2px solid transparent;
+}
+.check-item:hover{transform:translateX(4px);}
+.check-item input{display:none;}
+.heart-box{
+  width:34px;height:34px;flex-shrink:0;border-radius:12px;background:#fff;
+  display:grid;place-items:center;font-size:1.15rem;color:#fff;
+  border:2px solid var(--sky);transition:all .2s ease;
+}
+.check-item input:checked ~ .heart-box{background:var(--pink);border-color:var(--pink);}
+.heart-box::after{content:"♡";color:var(--sky);font-weight:800;}
+.check-item input:checked ~ .heart-box::after{content:"♥";color:#fff;}
+.check-item input:checked ~ .check-text{color:var(--pink-deep);}
+.check-item:has(input:checked){background:var(--pink-bg);border-color:var(--pink-soft);}
+.check-text{font-weight:800;font-size:.95rem;color:var(--ink-strong);}
+.check-text small{display:block;font-weight:500;font-size:.76rem;color:var(--ink-faint);}
+.check-done{
+  text-align:center;margin-top:20px;font-weight:800;color:var(--pink-deep);
+  font-size:1.05rem;opacity:0;transform:scale(.8);transition:all .4s ease;min-height:1.6em;
+}
+.check-done.show{opacity:1;transform:scale(1);}
+
+/* ============ footer ============ */
+footer{position:relative;text-align:center;padding:60px 20px 46px;z-index:1;}
+.foot-logo{font-weight:800;font-size:1.3rem;color:var(--pink-deep);}
+.foot-tag{margin-top:6px;font-weight:800;color:var(--lav-deep);font-size:.95rem;}
+.foot-note{margin-top:18px;font-size:.72rem;color:var(--ink-faint);font-weight:500;line-height:1.9;}
+
+/* ============ scroll reveal ============ */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.on{opacity:1;transform:translateY(0);}
+.reveal.d1{transition-delay:.1s;}
+.reveal.d2{transition-delay:.2s;}
+.reveal.d3{transition-delay:.3s;}
+
+/* ============ install button & sheet ============ */
+.install-fab{
+  position:fixed;right:16px;bottom:16px;z-index:50;
+  border:none;cursor:pointer;font-family:inherit;
+  background:linear-gradient(135deg,var(--pink),var(--lav));color:#fff;
+  font-weight:800;font-size:.92rem;padding:14px 20px;border-radius:999px;
+  box-shadow:0 10px 26px rgba(240,97,156,.42);
+  display:flex;align-items:center;gap:8px;
+  animation:fabfloat 3s ease-in-out infinite;
+}
+@keyframes fabfloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+.install-fab:active{transform:scale(.94);}
+.install-modal{position:fixed;inset:0;background:rgba(84,68,113,.5);z-index:60;display:grid;place-items:center;padding:20px;}
+.install-modal[hidden]{display:none;}
+.install-sheet{
+  position:relative;background:#fff;border-radius:30px;border:3px solid var(--pink-soft);
+  max-width:430px;width:100%;padding:30px 26px 22px;
+  box-shadow:0 24px 60px rgba(84,68,113,.35);text-align:center;
+}
+.sheet-close{
+  position:absolute;top:12px;right:14px;border:none;background:var(--pink-bg);color:var(--pink-deep);
+  width:36px;height:36px;border-radius:50%;font-size:1.2rem;font-weight:800;cursor:pointer;font-family:inherit;
+}
+.sheet-icon img{border-radius:20px;margin:0 auto 10px;box-shadow:0 8px 20px rgba(157,134,224,.3);}
+.install-sheet h3{font-size:1.15rem;font-weight:800;color:var(--ink-strong);margin-bottom:14px;}
+.how{display:none;text-align:left;background:var(--pink-bg);border-radius:18px;padding:14px 18px;margin-bottom:10px;}
+.how p{font-weight:800;color:var(--pink-deep);font-size:.9rem;margin-bottom:6px;}
+.how ol{margin:0 0 0 1.3em;font-size:.9rem;font-weight:500;color:var(--ink);}
+.how li{margin:4px 0;}
+.how .k{font-weight:800;color:var(--ink-strong);background:var(--lemon);border-radius:6px;padding:0 6px;}
+.sheet-note{font-size:.78rem;color:var(--ink-faint);font-weight:700;margin-top:8px;}
+
+/* ============ confetti ============ */
+.confetti{position:fixed;top:-20px;font-size:1.2rem;z-index:99;pointer-events:none;animation:fall linear forwards;}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.2;}}
+
+@media (max-width:640px){
+  .compare-row{grid-template-columns:1fr;}
+  .compare-arrow{transform:rotate(90deg);padding:2px 0;}
+  .ticker-label{font-size:.7rem;padding:8px 12px;}
+  .date-chip .d-cute{display:none;}
+  .topbar .date-chip{font-size:.72rem;padding:5px 12px;}
+  .truth > .deco{display:none;}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;}
+  .reveal{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ top bar ============ -->
+<header class="topbar">
+  <div class="brand"><span class="brand-badge">♡</span>News kawaii</div>
+  <div class="date-chip" id="dateChip">きょうも かわいい ☁</div>
+</header>
+
+<!-- ============ ticker ============ -->
+<div class="wrap">
+  <div class="ticker" aria-label="かわいい速報">
+    <span class="ticker-label">🎀 かわいい速報</span>
+    <div class="ticker-view">
+      <div class="ticker-track">
+        <span>🌡 西日本を中心に熱中症対策の徹底を</span>
+        <span>🧑‍🚀 宇宙から241日ぶりに3人が帰還</span>
+        <span>🏆 大相撲名古屋場所、安青錦が3回目の優勝</span>
+        <span>🐧 旭山動物園でイワトビペンギンのヒナ誕生</span>
+        <span>🚀 みちびき7号機、8月7日打ち上げへ</span>
+        <span>☄️ ペルセウス座流星群、今年は新月で絶好条件</span>
+        <span>🍦 アイスの支出は毎年7月・8月がピーク(家計調査)</span>
+        <span>🗾 日本の人口は1億2293万人に</span>
+        <span>🌡 西日本を中心に熱中症対策の徹底を</span>
+        <span>🧑‍🚀 宇宙から241日ぶりに3人が帰還</span>
+        <span>🏆 大相撲名古屋場所、安青錦が3回目の優勝</span>
+        <span>🐧 旭山動物園でイワトビペンギンのヒナ誕生</span>
+        <span>🚀 みちびき7号機、8月7日打ち上げへ</span>
+        <span>☄️ ペルセウス座流星群、今年は新月で絶好条件</span>
+        <span>🍦 アイスの支出は毎年7月・8月がピーク(家計調査)</span>
+        <span>🗾 日本の人口は1億2293万人に</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ hero ============ -->
+<section class="hero">
+  <span class="deco float-slow" style="top:8%;left:6%;font-size:2.6rem;">☁️</span>
+  <span class="deco float-mid" style="top:20%;right:8%;font-size:2.2rem;">🎀</span>
+  <span class="deco float-fast" style="top:60%;left:10%;font-size:1.6rem;">💫</span>
+  <span class="deco twinkle" style="top:12%;left:32%;font-size:1.3rem;">✦</span>
+  <span class="deco twinkle" style="top:30%;right:26%;font-size:1rem;animation-delay:.8s;">✦</span>
+  <span class="deco twinkle" style="top:64%;right:12%;font-size:1.4rem;animation-delay:1.4s;">✦</span>
+  <span class="deco float-slow" style="bottom:6%;right:20%;font-size:2.4rem;animation-delay:1s;">☁️</span>
+
+  <div class="hero-inner">
+    <h1 class="logo" aria-label="News kawaii">
+      <span class="l-news">N</span><span class="l-news">e</span><span class="l-news">w</span><span class="l-news">s</span><span class="l-heart">&nbsp;♡&nbsp;</span><span class="l-kawaii">k</span><span class="l-kawaii">a</span><span class="l-kawaii">w</span><span class="l-kawaii">a</span><span class="l-kawaii">i</span><span class="l-kawaii">i</span>
+    </h1>
+    <p class="tagline pop">ニュースが、かわいく流れてくる<span class="dot">。</span></p>
+    <p class="hero-sub">まいにちの ニュースを かわいい デザインで おとどけ ♡</p>
+
+    <div class="stats">
+      <div class="stat-card reveal">
+        <span class="ribbon">🎉 だいにんき!</span>
+        <p class="stat-lead">私の周りに聞いたら…</p>
+        <p class="stat-num">2人に1人<small>が</small></p>
+        <p class="stat-lead">News kawaii を使っている!</p>
+        <div class="friends" aria-hidden="true">
+          <div class="friend user">
+            <span class="face">🐰</span>
+            <span class="tag">つかってる♡</span>
+          </div>
+          <div class="friend">
+            <span class="face">🐻</span>
+            <span class="tag">つかってない</span>
+          </div>
+        </div>
+        <p class="stat-note">※ 当サイトしらべ</p>
+      </div>
+
+      <div class="stat-card lav reveal d1">
+        <span class="ribbon">📈 つまり…!</span>
+        <p class="stat-lead">日本の人口は 1億人なので</p>
+        <p class="stat-num"><span id="bigCounter">0</span><small>人が</small></p>
+        <p class="stat-lead">利用している ことになる!!</p>
+        <p class="stat-note" style="margin-top:22px;">※ 2人に1人 × 1億人 で計算しました</p>
+      </div>
+    </div>
+
+    <a class="scroll-cue" href="#truth">
+      <span>すごいでしょ? …ちょっと まって</span>
+      <span class="arrow">▽</span>
+    </a>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0,35 C240,70 480,0 720,35 C960,70 1200,0 1440,35 L1440,70 L0,70 Z" fill="#efeaff"/></svg>
+
+<!-- ============ truth ============ -->
+<section class="truth" id="truth">
+  <span class="deco float-slow" style="top:4%;left:8%;font-size:2.2rem;">☁️</span>
+  <span class="deco float-mid" style="top:4%;right:5%;font-size:1.8rem;">🎀</span>
+  <span class="deco twinkle" style="top:20%;left:24%;font-size:1.2rem;">✦</span>
+
+  <div class="wrap">
+    <div class="truth-card reveal">
+      <div class="batsu" aria-hidden="true"></div>
+      <p class="batsu-cap">うのみは ×</p>
+      <h2 class="truth-title">さっきの数字は、<em>ほんとうです</em></h2>
+      <p class="truth-lead">でも、伝わった印象は 実際と 大きくちがうはず。</p>
+
+      <div class="compare">
+        <div class="compare-row reveal d1">
+          <div class="said">
+            <span class="fact-stamp">事実です<br>(ホント)</span>
+            <span class="mini-chip">💬 こう伝えた</span>
+            <p>私の周りに聞いたら<br>「2人に1人」が使っている!</p>
+          </div>
+          <div class="compare-arrow" aria-hidden="true">➜</div>
+          <div class="truth-box">
+            <span class="mini-chip">🔍 じっさいのところ</span>
+            <p>聞いたのは、私の周りの たった2人。</p>
+            <small>1人が「使ってる」と答えたので「2人に1人(50%)」は事実。でもこの言い方だと、たくさんの人に聞いたように 聞こえてしまう。</small>
+          </div>
+        </div>
+
+        <div class="compare-row reveal d2">
+          <div class="said">
+            <span class="fact-stamp">計算も<br>合ってる</span>
+            <span class="mini-chip">💬 こう伝えた</span>
+            <p>日本の人口は1億人なので<br>「5000万人」が利用している!</p>
+          </div>
+          <div class="compare-arrow" aria-hidden="true">➜</div>
+          <div class="truth-box">
+            <span class="mini-chip">🔍 じっさいのところ</span>
+            <p>「人口1億人」も事実。50%×1億=5000万も、計算としては合っています。</p>
+            <small>まちがっているのは、たった2人の結果を 日本全体に当てはめたところ。事実と正しい計算を組み合わせても、誤った印象は 作れてしまう。</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="counter-gag reveal d3">
+        <p class="label">伝わった印象</p>
+        <p class="big-fake">50,000,000人</p>
+        <p class="label" style="margin-top:14px;">実際に確認できている利用者</p>
+        <p class="big-real"><span id="realCounter">1</span><small>人</small></p>
+      </div>
+    </div>
+
+    <div class="lesson reveal">
+      <h3>このように、<span class="marker">ぜんぶ事実</span>の情報でも、<br><span class="marker">伝え方しだいで</span> 誤って伝わることがあります。</h3>
+      <p class="big-msg pop">自分の頭で考えて、<br><span class="lav-txt">ニュースを読むように しよう。</span></p>
+      <p class="small">「ウソかどうか」だけを見ていると、事実でできた誤解は するっと すり抜けてきます。<br>数字の出どころと ものさしを、じぶんの頭で確かめてみよう。どんなニュースでも おなじです。</p>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" style="background:#ffeef6;" aria-hidden="true"><path d="M0,35 C240,70 480,0 720,35 C960,70 1200,0 1440,35 L1440,70 L0,70 Z" fill="#ffffff"/></svg>
+
+<!-- ============ news ============ -->
+<section class="news" id="news">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-chip">TODAY'S NEWS</span>
+      <h2 class="sec-title">きょうの <em>kawaii</em> ニュース</h2>
+      <p class="sec-sub">…というわけで、きょうのニュースを どうぞ</p>
+    </div>
+
+    <div class="filter-bar" id="filterBar">
+      <button class="f-chip on" type="button" data-f="all">すべて</button>
+      <button class="f-chip" type="button" data-f="どうぶつ">どうぶつ</button>
+      <button class="f-chip" type="button" data-f="かわいい">かわいい</button>
+      <button class="f-chip" type="button" data-f="うちゅう">うちゅう</button>
+      <button class="f-chip" type="button" data-f="てんき">てんき</button>
+      <button class="f-chip" type="button" data-f="ぼうさい">ぼうさい</button>
+      <button class="f-chip" type="button" data-f="スポーツ">スポーツ</button>
+      <button class="f-chip" type="button" data-f="くらし">くらし</button>
+      <button class="f-chip" type="button" data-f="とうけい">とうけい</button>
+      <button class="f-chip" type="button" data-f="かがく">かがく</button>
+      <button class="f-chip" type="button" data-f="けんこう">けんこう</button>
+      <button class="f-chip" type="button" data-f="ぶんか">ぶんか</button>
+      <button class="f-chip" type="button" data-f="せいじ">せいじ</button>
+      <button class="f-chip" type="button" data-f="けいざい">けいざい</button>
+    </div>
+
+    <div class="news-grid">
+      <article class="news-card reveal" data-cat="てんき">
+        <div class="news-visual">🗼</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="auto-badge">ひらくたび最新</span></div>
+          <h3 class="news-title">きょうの東京のお天気(気象庁の最新発表)</h3>
+          <p class="news-text" id="autoWeatherText">気象庁から さいしんの天気を取得しています…</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="auto-weather">♡ <span class="lk">…</span></button><a class="more" href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener">出典: 気象庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="ぼうさい">
+        <div class="news-visual">📡</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="auto-badge">ひらくたび最新</span></div>
+          <h3 class="news-title">さいしんの地震情報</h3>
+          <p class="news-text" id="autoQuakeText">気象庁から さいしんの地震情報を取得しています…</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="auto-quake">♡ <span class="lk">…</span></button><a class="more" href="https://www.jma.go.jp/bosai/map.html#contents=earthquake_map" target="_blank" rel="noopener">出典: 気象庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="うちゅう">
+        <div class="news-visual apod">🌌<img id="apodImg" alt="NASA きょうの宇宙写真"></div>
+        <div class="news-body">
+          <div class="news-meta"><span class="auto-badge">ひらくたび最新</span></div>
+          <h3 class="news-title">NASAの「きょうの宇宙写真」</h3>
+          <p class="news-text" id="autoApodText">NASAから きょうの一枚を取得しています…</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="auto-apod">♡ <span class="lk">…</span></button><a class="more" href="https://apod.nasa.gov/apod/astropix.html" target="_blank" rel="noopener">出典: NASA APOD ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="てんき">
+        <div class="news-visual">⛈️</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lemon">てんき</span><span class="time">7月27日</span></div>
+          <h3 class="news-title">東北〜九州で大気不安定 西日本は熱中症対策を</h3>
+          <p class="news-text">27日は東北から九州にかけて大気の状態が不安定になっています。急な雷雨に気をつけつつ、西日本を中心に厳しい暑さへの対策も。こまめな水分補給を忘れずに。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="1">♡ <span class="lk">…</span></button><a class="more" href="https://news.web.nhk/newsweb/na/na-k10015186851000" target="_blank" rel="noopener">出典: NHK ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="スポーツ">
+        <div class="news-visual">🏆</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat sky">スポーツ</span><span class="time">7月27日</span></div>
+          <h3 class="news-title">大相撲名古屋場所、安青錦が優勝</h3>
+          <p class="news-text">大相撲名古屋場所で、安青錦が優勝しました。ことしの初場所以来、3回目の優勝です。おめでとうございます。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="2">♡ <span class="lk">…</span></button><a class="more" href="https://news.web.nhk/newsweb/na/na-k10015186751000" target="_blank" rel="noopener">出典: NHK ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="スポーツ">
+        <div class="news-visual">🏟️</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">スポーツ</span><span class="time">7月25日</span></div>
+          <h3 class="news-title">夏の高校野球、各地で甲子園出場校が決定</h3>
+          <p class="news-text">夏の高校野球は各地で地方大会の決勝が行われ、甲子園に出場する学校が次々と決まっています。球児たちの夏が、ことしもやってきました。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="3">♡ <span class="lk">…</span></button><a class="more" href="https://news.web.nhk/newsweb/na/na-k10015185961000" target="_blank" rel="noopener">出典: NHK ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="うちゅう">
+        <div class="news-visual">🚀</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">うちゅう</span><span class="time">7月5日</span></div>
+          <h3 class="news-title">はやぶさ2、小惑星トリフネの超近接フライバイに成功</h3>
+          <p class="news-text">探査機「はやぶさ2」が、小惑星トリフネ(2001 CC21)のすぐそばを通過する観測に成功。わずか約1kmの至近距離を、秒速約5kmで駆け抜けました。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="4">♡ <span class="lk">…</span></button><a class="more" href="https://www.jaxa.jp/press/2026/07/20260706-3_j.html" target="_blank" rel="noopener">出典: JAXA ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="せいじ">
+        <div class="news-visual">🏛</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat mint">せいじ</span><span class="time">7月25日</span></div>
+          <h3 class="news-title">「副首都」構想の関連法が成立</h3>
+          <p class="news-text">「副首都」構想の関連法が、自民・維新などの賛成で成立しました。これを受けて愛知県では、県知事と名古屋市長が会見し「副首都」を目指すと表明しています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="5">♡ <span class="lk">…</span></button><a class="more" href="https://news.web.nhk/newsweb/na/na-k10015185521000" target="_blank" rel="noopener">出典: NHK ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="けいざい">
+        <div class="news-visual">💹</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">けいざい</span><span class="time">7月24日</span></div>
+          <h3 class="news-title">米の新たな追加関税が発動、日本はあわせて12.5%に</h3>
+          <p class="news-text">アメリカのトランプ政権が新たな追加関税を発動し、日本への税率は既存の分とあわせて12.5%になりました。アメリカでは企業2社が、措置の取り消しを求めて提訴しています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="6">♡ <span class="lk">…</span></button><a class="more" href="https://news.web.nhk/newsweb/na/na-k10015184731000" target="_blank" rel="noopener">出典: NHK ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="てんき">
+        <div class="news-visual">🧊</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lemon">てんき</span><span class="time">7月26日</span></div>
+          <h3 class="news-title">関東〜沖縄の29都府県に 熱中症警戒アラート</h3>
+          <p class="news-text">26日は、関東から沖縄にかけての29都府県に熱中症警戒アラートが発表されています。こまめな水分補給を心がけ、屋外での長時間の活動は避けて、部屋では冷房を使ってすごしましょう。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="7">♡ <span class="lk">…</span></button><a class="more" href="https://www.wbgt.env.go.jp/alert_record.php" target="_blank" rel="noopener">出典: 環境省 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="うちゅう">
+        <div class="news-visual">☄️</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">うちゅう</span><span class="time">8月が見頃</span></div>
+          <h3 class="news-title">ペルセウス座流星群、今年は新月で絶好条件</h3>
+          <p class="news-text">ことしは8月13日ごろに活動のピークをむかえます。ちょうど新月で月明かりの影響がなく、暗い場所なら1時間に35個ほど見られる絶好の条件。見頃は12日夜〜14日明け方です。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="8">♡ <span class="lk">…</span></button><a class="more" href="https://www.nao.ac.jp/astro/sky/2026/08-topics03.html" target="_blank" rel="noopener">出典: 国立天文台 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="とうけい">
+        <div class="news-visual">🍦</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat mint">とうけい</span><span class="time">毎年のこと</span></div>
+          <h3 class="news-title">アイスへの支出、毎年7月と8月がピーク</h3>
+          <p class="news-text">総務省の家計調査によると、アイスクリーム・シャーベットへの支出は毎年7月・8月がいちばん多いそう。きょうアイスを食べたあなたは、統計どおりの夏をすごしています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="9">♡ <span class="lk">…</span></button><a class="more" href="https://www.stat.go.jp/data/kakei/tsushin/pdf/29_7.pdf" target="_blank" rel="noopener">出典: 総務省統計局 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="かわいい">
+        <div class="news-visual">🍃</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">かわいい</span><span class="time">7月15日</span></div>
+          <h3 class="news-title">ちいかわデザインの「リフレッスー」が新発売</h3>
+          <p class="news-text">リップスティック型で、鼻に近づけるとスーッとするリフレッシュ雑貨「リフレッスー」に、ちいかわデザインが登場しました(各638円)。勉強やおしごとの気分転換むけだそうです。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="10">♡ <span class="lk">…</span></button><a class="more" href="https://prtimes.jp/main/html/rd/p/000000599.000056322.html" target="_blank" rel="noopener">出典: PR TIMES ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="どうぶつ">
+        <div class="news-visual">🐧</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat sky">どうぶつ</span><span class="time">7月24日</span></div>
+          <h3 class="news-title">旭山動物園で ミナミイワトビペンギンのヒナ誕生</h3>
+          <p class="news-text">北海道の旭山動物園で、ミナミイワトビペンギンのヒナが孵化したと発表されました。飼育スタッフのブログで、ちいさな姿と成長の様子が紹介されています。すくすく育ちますように。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="11">♡ <span class="lk">…</span></button><a class="more" href="https://www.city.asahikawa.hokkaido.jp/asahiyamazoo/news-blog/blog/siiku-blog/d084433.html" target="_blank" rel="noopener">出典: 旭川市 旭山動物園 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="どうぶつ">
+        <div class="news-visual">🐯</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat sky">どうぶつ</span><span class="time">7月25日</span></div>
+          <h3 class="news-title">アムールトラの双子、富士サファリパークでデビュー</h3>
+          <p class="news-text">富士サファリパークで、アムールトラの双子の赤ちゃんが25日から公開デビューしました。おかあさんと一緒にすごす様子を見ることができます。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="12">♡ <span class="lk">…</span></button><a class="more" href="https://www.fujisafari.co.jp/news/notice/485331/" target="_blank" rel="noopener">出典: 富士サファリパーク ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="どうぶつ">
+        <div class="news-visual">🐒</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat sky">どうぶつ</span><span class="time">7月26日</span></div>
+          <h3 class="news-title">ぬいぐるみみたいな子ザル「パンチ」、1歳に</h3>
+          <p class="news-text">“ぬいぐるみのよう”と話題の千葉の子ザル「パンチ」が1歳の誕生日をむかえ、ファンから祝福されました。きょうもかわいいです。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="13">♡ <span class="lk">…</span></button><a class="more" href="https://news.web.nhk/newsweb/na/na-k10015186521000" target="_blank" rel="noopener">出典: NHK ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="うちゅう">
+        <div class="news-visual">🧑‍🚀</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">うちゅう</span><span class="time">7月26日</span></div>
+          <h3 class="news-title">宇宙から241日ぶりの おかえりなさい</h3>
+          <p class="news-text">NASAのウィリアムズ飛行士ら3人が7月26日、国際宇宙ステーションから地球に帰還しました。241日間の滞在で、地球をおよそ3856周しました。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="14">♡ <span class="lk">…</span></button><a class="more" href="https://www.nasa.gov/news-release/nasa-astronaut-chris-williams-crewmates-return-from-space-station/" target="_blank" rel="noopener">出典: NASA ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="てんき">
+        <div class="news-visual">🌻</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lemon">てんき</span><span class="time">7月21日</span></div>
+          <h3 class="news-title">8月もきびしい暑さに 最新の3か月予報</h3>
+          <p class="news-text">気象庁は7月21日、8月から10月の3か月予報を発表しました。8月は東日本や西日本で気温が平年より高く厳しい暑さが続き、10月も平年並みか高めで秋の訪れはゆっくりの見込みです。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="15">♡ <span class="lk">…</span></button><a class="more" href="https://www.jma.go.jp/bosai/season/" target="_blank" rel="noopener">出典: 気象庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="とうけい">
+        <div class="news-visual">🗾</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat mint">とうけい</span><span class="time">7月21日</span></div>
+          <h3 class="news-title">日本の人口は 1億2293万人になりました</h3>
+          <p class="news-text">総務省統計局が7月21日に公表した人口推計によると、2026年7月1日現在の総人口は概算値で1億2293万人。前年の同じ月より44万人(0.35%)減っています。トップの「1億人」も、ほんとうは少し盛った数字でした。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="16">♡ <span class="lk">…</span></button><a class="more" href="https://www.stat.go.jp/data/jinsui/new.html" target="_blank" rel="noopener">出典: 総務省統計局 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="うちゅう">
+        <div class="news-visual">🛰️</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">うちゅう</span><span class="time">8月7日予定</span></div>
+          <h3 class="news-title">みちびき7号機、8月7日に打ち上げへ</h3>
+          <p class="news-text">JAXAは準天頂衛星「みちびき7号機」を、H3ロケット9号機で8月7日に種子島宇宙センターから打ち上げる予定と発表しました。打ち上げ予定時間帯は朝4時30分から6時00分です。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="17">♡ <span class="lk">…</span></button><a class="more" href="https://www.jaxa.jp/press/2026/07/20260708-1_j.html" target="_blank" rel="noopener">出典: JAXA ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="くらし">
+        <div class="news-visual">🚑</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lemon">くらし</span><span class="time">7月21日</span></div>
+          <h3 class="news-title">熱中症の搬送、1週間で1万人をこえました</h3>
+          <p class="news-text">総務省消防庁によると、7月13日から19日の1週間に熱中症で救急搬送された人は全国で1万857人(速報値)。今年初めて週1万人を超え、発生場所は住居がいちばん多くなっています。おうちの中でも冷房と水分を。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="18">♡ <span class="lk">…</span></button><a class="more" href="https://www.fdma.go.jp/disaster/heatstroke/post3.html" target="_blank" rel="noopener">出典: 総務省消防庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="くらし">
+        <div class="news-visual">🐟</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lemon">くらし</span><span class="time">7月24日</span></div>
+          <h3 class="news-title">まだ知らない おいしい魚に出会えるかも</h3>
+          <p class="news-text">水産庁は7月24日、官民協働の「魅了ギョ・プロジェクト」の始動を発表しました。アイゴやシイラなど、まだあまり知られていない魚の魅力を発信する取組で、8月19日には東京でセミナーも開かれます。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="19">♡ <span class="lk">…</span></button><a class="more" href="https://www.jfa.maff.go.jp/j/press/kakou/260724.html" target="_blank" rel="noopener">出典: 水産庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="うちゅう">
+        <div class="news-visual">🔭</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">うちゅう</span><span class="time">7月6日</span></div>
+          <h3 class="news-title">ウェッブ望遠鏡、4周年のきねん写真を公開</h3>
+          <p class="news-text">ジェイムズ・ウェッブ宇宙望遠鏡の観測開始4周年を記念して、1100万光年先のケンタウルス座A銀河の新しい画像が公開されました。ちりの奥にかがやく、たくさんの星が写っています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="20">♡ <span class="lk">…</span></button><a class="more" href="https://esawebb.org/news/weic2615/" target="_blank" rel="noopener">出典: ESA/Webb ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="くらし">
+        <div class="news-visual">🎒</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lemon">くらし</span><span class="time">7月29・30日</span></div>
+          <h3 class="news-title">夏休みは「こども霞が関見学デー」へ</h3>
+          <p class="news-text">こども家庭庁は「こども霞が関見学デー」を7月29日と30日に開催すると発表しました。夏休みに省庁の中を見学できる、こども向けのイベントです。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="21">♡ <span class="lk">…</span></button><a class="more" href="https://www.cfa.go.jp/press/f761aee3-c297-4a64-ab2f-d44616a8f8f6" target="_blank" rel="noopener">出典: こども家庭庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="くらし">
+        <div class="news-visual">🔌</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lemon">くらし</span><span class="time">7月24日</span></div>
+          <h3 class="news-title">充電式グッズの火災事故に 気をつけて</h3>
+          <p class="news-text">消費者庁は7月24日、重大製品事故等17件を公表しました。掃除機用バッテリーやパソコン用ACアダプターの火災などで、対象製品では回収・交換などのリコールが行われています。おうちの製品も確認を。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="22">♡ <span class="lk">…</span></button><a class="more" href="https://www.caa.go.jp/notice/entry/047009/" target="_blank" rel="noopener">出典: 消費者庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="うちゅう">
+        <div class="news-visual">🎋</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">うちゅう</span><span class="time">8月19日</span></div>
+          <h3 class="news-title">今年は七夕がもう一回? 8月19日は「伝統的七夕」</h3>
+          <p class="news-text">昔のこよみにもとづく「伝統的七夕」は、2026年は8月19日です。この日の月は半月より少し細く、晴れた夜にはぜひ星空を見上げてほしいと国立天文台が呼びかけています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="23">♡ <span class="lk">…</span></button><a class="more" href="https://www.nao.ac.jp/astro/sky/2026/08-topics01.html" target="_blank" rel="noopener">出典: 国立天文台 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="けいざい">
+        <div class="news-visual">🧳</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">けいざい</span><span class="time">7月15日</span></div>
+          <h3 class="news-title">4〜6月の訪日旅行消費は 2.5兆円でした</h3>
+          <p class="news-text">観光庁は7月15日、4〜6月期の訪日外国人旅行消費額(1次速報)が2兆5096億円だったと発表しました。前年同期比0.2%増で、国・地域別ではアメリカが最大の市場となりました。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="24">♡ <span class="lk">…</span></button><a class="more" href="https://www.mlit.go.jp/kankocho/news02_00094.html" target="_blank" rel="noopener">出典: 観光庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="かがく">
+        <div class="news-visual">🌋</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">かがく</span><span class="time">7月25日</span></div>
+          <h3 class="news-title">キラウエア火山、高さ290mの溶岩ふん水</h3>
+          <p class="news-text">ハワイのキラウエア火山で7月15日、51回目の溶岩噴水が起き、高さ約290メートルに達しました。USGS(米地質調査所)は、次の噴水を7月27〜31日ごろと予想しています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="25">♡ <span class="lk">…</span></button><a class="more" href="https://volcanoes.usgs.gov/hans-public/notice/DOI-USGS-HVO-2026-07-25T18:38:59+00:00" target="_blank" rel="noopener">出典: USGS ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="ぶんか">
+        <div class="news-visual">🐋</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">ぶんか</span><span class="time">10月12日まで</span></div>
+          <h3 class="news-title">科博で「いきもの超ワールド展」開催中</h3>
+          <p class="news-text">国立科学博物館(東京・上野)で特別展「いきもの超ワールド展」が10月12日まで開催中です。番組「ダーウィンが来た!」の映像と標本で、生きものたちの驚きの能力や生存戦略を紹介します。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="26">♡ <span class="lk">…</span></button><a class="more" href="https://ikimonoworld.jp/" target="_blank" rel="noopener">出典: 国立科学博物館 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="うちゅう">
+        <div class="news-visual">🪐</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">うちゅう</span><span class="time">7月15日</span></div>
+          <h3 class="news-title">地上から見つけた、いちばん暗い惑星</h3>
+          <p class="news-text">ESO(ヨーロッパ南天天文台)の望遠鏡が、63光年先のベータ・ピクトリス星系で3つめの惑星を発見しました。地上から撮影された中で最も暗い惑星で、質量は木星の約2.4倍です。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="27">♡ <span class="lk">…</span></button><a class="more" href="https://www.eso.org/public/news/eso2609/" target="_blank" rel="noopener">出典: ESO ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="けんこう">
+        <div class="news-visual">🍎</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat mint">けんこう</span><span class="time">6月3日</span></div>
+          <h3 class="news-title">がん予防法「5+1」が わかりやすく新しく</h3>
+          <p class="news-text">国立がん研究センターが「科学的根拠に基づくがん予防法5+1」を刷新しました。お酒の項目は「節酒する」から「飲酒をひかえる」に変わり、たばこや食生活など6つのポイントで予防を紹介しています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="28">♡ <span class="lk">…</span></button><a class="more" href="https://www.ncc.go.jp/jp/information/pr_release/2026/0603/index.html" target="_blank" rel="noopener">出典: 国立がん研究センター ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="ぶんか">
+        <div class="news-visual">📷</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">ぶんか</span><span class="time">11月30日まで</span></div>
+          <h3 class="news-title">国立公園フォトコンテストが はじまりました</h3>
+          <p class="news-text">環境省の「日本の国立公園フォトコンテスト2026」が開催中です。テーマは「届けたい、自然の物語」で、応募期間は7月10日から11月30日まで。夏の思い出の一枚をどうぞ。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="29">♡ <span class="lk">…</span></button><a class="more" href="https://www.env.go.jp/press/press_05163.html" target="_blank" rel="noopener">出典: 環境省 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="ぶんか">
+        <div class="news-visual">🐧</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">ぶんか</span><span class="time">10月17日まで</span></div>
+          <h3 class="news-title">南極観測70年を 写真100点で振り返る</h3>
+          <p class="news-text">国立極地研究所の南極・北極科学館(東京・立川)で「南極観測70周年記念写真展」が10月17日まで開かれています。第1次隊から現在までのあゆみを100点以上の写真で紹介し、入館は無料です。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="30">♡ <span class="lk">…</span></button><a class="more" href="https://www.nipr.ac.jp/info2026/20260722.html" target="_blank" rel="noopener">出典: 国立極地研究所 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="かがく">
+        <div class="news-visual">🧠</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat lav">かがく</span><span class="time">7月23日</span></div>
+          <h3 class="news-title">脳がはたらくときに作られるタンパク質を発見</h3>
+          <p class="news-text">理化学研究所と新潟大学は、神経細胞が活動するときに作られる未知の小さなタンパク質を多数発見したと発表しました。記憶のしくみの理解や、認知症などの治療法開発につながると期待されています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="31">♡ <span class="lk">…</span></button><a class="more" href="https://www.riken.jp/press/2026/20260723_1/index.html" target="_blank" rel="noopener">出典: 理化学研究所 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="けいざい">
+        <div class="news-visual">📊</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">けいざい</span><span class="time">7月7日</span></div>
+          <h3 class="news-title">住む場所と仕事のチャンス、OECDの新しい報告書</h3>
+          <p class="news-text">OECDが7月7日、雇用アウトルック2026を発表しました。住む地域によって仕事や収入のチャンスに差があるとして、地域に合わせた政策の大切さを示しています。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="32">♡ <span class="lk">…</span></button><a class="more" href="https://www.oecd.org/en/publications/oecd-employment-outlook-2026_7e710f54-en.html" target="_blank" rel="noopener">出典: OECD ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d1" data-cat="ぶんか">
+        <div class="news-visual">🎭</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat">ぶんか</span><span class="time">7月14日</span></div>
+          <h3 class="news-title">高校生の文化の祭典、2031年は大分県へ</h3>
+          <p class="news-text">文化庁は7月14日、第55回全国高等学校総合文化祭の開催地を大分県に内定したと発表しました。開催は2031年度で、大分県での開催は1979年度の第2回大会以来2回目です。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="33">♡ <span class="lk">…</span></button><a class="more" href="https://www.bunka.go.jp/koho_hodo_oshirase/hodohappyo/94407701.html" target="_blank" rel="noopener">出典: 文化庁 ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal d2" data-cat="けんこう">
+        <div class="news-visual">🧬</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat mint">けんこう</span><span class="time">7月1日</span></div>
+          <h3 class="news-title">遺伝子検査が、ほくろのがん対策の味方に</h3>
+          <p class="news-text">NIH(米国立衛生研究所)が約70万人のデータをもとにした研究を紹介しました。40歳より前にメラノーマと診断された人などは、遺伝子検査がリスクを早く知る手がかりになる可能性があります。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="34">♡ <span class="lk">…</span></button><a class="more" href="https://www.nih.gov/news-events/nih-research-matters/genetic-testing-may-benefit-more-patients-melanoma" target="_blank" rel="noopener">出典: NIH ›</a></div>
+        </div>
+      </article>
+
+      <article class="news-card reveal" data-cat="せいじ">
+        <div class="news-visual">⚓</div>
+        <div class="news-body">
+          <div class="news-meta"><span class="cat mint">せいじ</span><span class="time">7月20日</span></div>
+          <h3 class="news-title">「海の日」に海洋立国の功労者を表彰</h3>
+          <p class="news-text">第19回海洋立国推進功労者内閣総理大臣表彰の受賞者に、4名と3団体が選ばれました。「海の日」の7月20日に、東京国際クルーズターミナルで表彰式が行われました。</p>
+          <div class="news-foot"><button class="likes" type="button" data-n="35">♡ <span class="lk">…</span></button><a class="more" href="https://www.meti.go.jp/press/2026/07/20260720001.html" target="_blank" rel="noopener">出典: 経済産業省 ›</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 70" preserveAspectRatio="none" style="background:#ffffff;" aria-hidden="true"><path d="M0,35 C240,70 480,0 720,35 C960,70 1200,0 1440,35 L1440,70 L0,70 Z" fill="#eaf6ff"/></svg>
+
+<!-- ============ check ============ -->
+<section class="check-sec">
+  <div class="wrap">
+    <div class="check-card reveal">
+      <div class="check-head">
+        <h3>🎀 うのみにしない おまじない チェック</h3>
+        <p>ニュースを読むとき、心のなかで となえてね</p>
+      </div>
+      <div class="checks">
+        <label class="check-item">
+          <input type="checkbox">
+          <span class="heart-box"></span>
+          <span class="check-text">だれが 言っているの?<small>発信しているのは どこの だれ? 「当サイトしらべ」に注意</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <span class="heart-box"></span>
+          <span class="check-text">何人に 聞いたの?<small>「2人に1人」も、聞いたのが2人なら 意味がぜんぜん違う</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <span class="heart-box"></span>
+          <span class="check-text">小さな話を、大きく広げてない?<small>2人の結果を1億人に当てはめるみたいに、せまいデータを全体に広げていないか</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <span class="heart-box"></span>
+          <span class="check-text">元のデータは どこ?<small>出どころ(一次情報)まで たどれるかどうか 確かめる</small></span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox">
+          <span class="heart-box"></span>
+          <span class="check-text">ほかでは なんて言ってる?<small>ひとつの記事だけで 決めずに、いくつか比べてみる</small></span>
+        </label>
+      </div>
+      <p class="check-done" id="checkDone"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ footer ============ -->
+<footer>
+  <p class="foot-logo">News ♡ kawaii</p>
+  <p class="foot-tag pop">かわいいは、うのみにしない。</p>
+</footer>
+
+<button class="install-fab" id="installBtn" type="button">📲 ホームについか</button>
+
+<div class="install-modal" id="installModal" hidden>
+  <div class="install-sheet">
+    <button class="sheet-close" id="installClose" type="button" aria-label="とじる">×</button>
+    <div class="sheet-icon"><img src="icon-192.png" alt="News kawaii アイコン" width="76" height="76" onerror="this.parentNode.style.display='none'"></div>
+    <h3>ホーム画面に「News♡kawaii」を ついかしよう</h3>
+    <div class="how" id="howIos">
+      <p>iPhone / iPad (Safari)</p>
+      <ol>
+        <li>画面下の <span class="k">共有ボタン(□に↑)</span> をタップ</li>
+        <li>すこし下にスクロールして <span class="k">ホーム画面に追加</span> をえらぶ</li>
+        <li>右上の <span class="k">追加</span> をタップ</li>
+      </ol>
+    </div>
+    <div class="how" id="howAndroid">
+      <p>Android (Chrome)</p>
+      <ol>
+        <li>右上の <span class="k">メニュー(⋮)</span> をタップ</li>
+        <li><span class="k">ホーム画面に追加</span>(または「アプリをインストール」)をえらぶ</li>
+      </ol>
+    </div>
+    <div class="how" id="howPc">
+      <p>パソコン (Chrome / Edge)</p>
+      <ol>
+        <li>アドレスバー右端の <span class="k">インストールアイコン</span> をクリック</li>
+      </ol>
+    </div>
+    <p class="sheet-note">ついかすると、ねこのアイコンと「News♡kawaii」の名前で ホームにならびます 🎀</p>
+  </div>
+</div>
+
+<script>
+// ---- date chip ----
+(function(){
+  var d = new Date();
+  var days = ["日","月","火","水","木","金","土"];
+  document.getElementById("dateChip").innerHTML =
+    (d.getMonth()+1) + "月" + d.getDate() + "日(" + days[d.getDay()] + ")" +
+    '<span class="d-cute"> ♡ きょうも かわいい ☁</span>';
+})();
+
+// ---- scroll reveal ----
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target); }
+  });
+},{threshold:0.15});
+document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+// ---- big fake counter (0 -> 50,000,000) ----
+(function(){
+  var el = document.getElementById("bigCounter");
+  var started = false;
+  var obs = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting && !started){
+      started = true;
+      var target = 50000000, dur = 2200, t0 = null;
+      function step(t){
+        if(!t0) t0 = t;
+        var p = Math.min((t - t0)/dur, 1);
+        var eased = 1 - Math.pow(1-p, 3);
+        el.textContent = Math.floor(target*eased).toLocaleString("ja-JP");
+        if(p < 1) requestAnimationFrame(step);
+        else el.textContent = "5000万";
+      }
+      requestAnimationFrame(step);
+      obs.disconnect();
+    }
+  },{threshold:0.4});
+  obs.observe(el);
+})();
+
+// ---- auto news (ひらくたび最新: 公式APIから直接取得) ----
+(function(){
+  function put(id, txt){ var el = document.getElementById(id); if(el) el.textContent = txt; }
+  // 自動更新ティッカー(GitHub Actionsが生成する news-auto.json があれば差し替え)
+  fetch("/news-auto.json")
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(d){
+      if(!d || !d.ticker || !d.ticker.length) return;
+      var track = document.querySelector(".ticker-track");
+      if(!track) return;
+      var items = d.ticker.slice(0, 8);
+      var html = "";
+      for(var k = 0; k < 2; k++){
+        items.forEach(function(t){
+          var div = document.createElement("div");
+          div.textContent = t;
+          html += "<span>" + div.innerHTML + "</span>";
+        });
+      }
+      track.innerHTML = html;
+    })
+    .catch(function(){});
+  // 気象庁: 東京地方の天気概況
+  fetch("/jma/forecast/data/overview_forecast/130000.json")
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var t = (d.text || "").replace(/\s+/g, " ").trim();
+      if(t.length > 120) t = t.slice(0, 120) + "…";
+      var dt = new Date(d.reportDatetime);
+      put("autoWeatherText", t + " (" + (dt.getMonth()+1) + "月" + dt.getDate() + "日" + dt.getHours() + "時 気象庁発表)");
+    })
+    .catch(function(){ put("autoWeatherText", "いまは取得できませんでした。出典リンクから気象庁の最新予報をどうぞ。"); });
+  // 気象庁: 最新の地震
+  fetch("/jma/quake/data/list.json")
+    .then(function(r){ return r.json(); })
+    .then(function(list){
+      if(list && list.sort){
+        list.sort(function(a, b){ return new Date(b.at || b.rdt) - new Date(a.at || a.rdt); });
+      }
+      var q = list && list[0];
+      if(!q){ put("autoQuakeText", "さいきん発表された地震情報はありません。"); return; }
+      var d = new Date(q.at || q.rdt);
+      var when = isNaN(d) ? "" : (d.getMonth()+1) + "月" + d.getDate() + "日 " + d.getHours() + "時" + ("0"+d.getMinutes()).slice(-2) + "分ごろ、";
+      var name = q.anm || "震源";
+      var mi = q.maxi ? "最大震度" + q.maxi : "";
+      var mag = q.mag ? " M" + q.mag : "";
+      put("autoQuakeText", "いちばん新しい発表: " + when + name + "で" + mag + (mi ? "、" + mi : "") + " の地震がありました。くわしくは出典リンクへ。");
+    })
+    .catch(function(){ put("autoQuakeText", "いまは取得できませんでした。出典リンクから気象庁の最新情報をどうぞ。"); });
+  // NASA: きょうの宇宙写真(APOD)
+  fetch("/nasa/planetary/apod?api_key=DEMO_KEY&thumbs=true")
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var src = d.media_type === "image" ? d.url : d.thumbnail_url;
+      if(src){
+        var img = document.getElementById("apodImg");
+        img.onload = function(){ img.style.display = "block"; };
+        img.src = src;
+      }
+      if(d.title){
+        put("autoApodText", "NASAが毎日えらぶ宇宙写真。きょうの一枚は「" + d.title + "」です。(画像: NASA APOD)");
+      } else {
+        put("autoApodText", "きょうの一枚は じゅんび中のようです。出典リンクからどうぞ。");
+      }
+    })
+    .catch(function(){ put("autoApodText", "いまは取得できませんでした。出典リンクからNASAのきょうの一枚をどうぞ。"); });
+})();
+
+// ---- like buttons (ほんとうのカウント) ----
+(function(){
+  var API = "https://abacus.jasoncameron.dev";
+  var NS = "news-kawaii-likes-v1";
+  function fmt(n){ return n >= 10000 ? (Math.round(n/1000)/10) + "万" : n.toLocaleString("ja-JP"); }
+  var liked = {};
+  try{ liked = JSON.parse(localStorage.getItem("nk-liked") || "{}"); }catch(e){}
+  document.querySelectorAll(".likes").forEach(function(btn){
+    var key = "card-" + btn.getAttribute("data-n");
+    var lk = btn.querySelector(".lk");
+    fetch(API + "/get/" + NS + "/" + key)
+      .then(function(r){ return r.json(); })
+      .then(function(d){ lk.textContent = fmt(d.value || 0); })
+      .catch(function(){ lk.textContent = "0"; });
+    if(liked[key]){ btn.classList.add("liked"); }
+    btn.addEventListener("click", function(){
+      if(btn.classList.contains("liked")) return;
+      btn.classList.add("liked");
+      liked[key] = 1;
+      try{ localStorage.setItem("nk-liked", JSON.stringify(liked)); }catch(e){}
+      fetch(API + "/hit/" + NS + "/" + key)
+        .then(function(r){ return r.json(); })
+        .then(function(d){ lk.textContent = fmt(d.value || 1); })
+        .catch(function(){
+          var n = parseInt(lk.textContent.replace(/[^0-9]/g, ""), 10) || 0;
+          lk.textContent = fmt(n + 1);
+        });
+    });
+  });
+})();
+
+// ---- checklist ----
+(function(){
+  var boxes = document.querySelectorAll(".check-item input");
+  var done = document.getElementById("checkDone");
+  function update(){
+    var n = 0;
+    boxes.forEach(function(b){ if(b.checked) n++; });
+    if(n === boxes.length){
+      done.textContent = "🎓 パーフェクト! きみはもう、かんたんには だまされない ♡";
+      done.classList.add("show");
+      confetti();
+    } else if(n > 0){
+      done.textContent = "あと " + (boxes.length - n) + "つ ♡";
+      done.classList.add("show");
+    } else {
+      done.classList.remove("show");
+    }
+  }
+  boxes.forEach(function(b){ b.addEventListener("change", update); });
+
+  var thrown = false;
+  window.__confetti = confetti;
+  function confetti(){
+    if(thrown) return;
+    thrown = true;
+    var emo = ["🎀","♡","✦","🌸","⭐","💜"];
+    for(var i = 0; i < 36; i++){
+      var s = document.createElement("span");
+      s.className = "confetti";
+      s.textContent = emo[i % emo.length];
+      s.style.left = (Math.random()*100) + "vw";
+      s.style.animationDuration = (2.2 + Math.random()*2.4) + "s";
+      s.style.animationDelay = (Math.random()*0.8) + "s";
+      document.body.appendChild(s);
+      s.addEventListener("animationend", function(){ this.remove(); });
+    }
+  }
+})();
+
+// ---- category filter ----
+(function(){
+  var bar = document.getElementById("filterBar");
+  if(!bar) return;
+  bar.addEventListener("click", function(e){
+    var chip = e.target.closest(".f-chip");
+    if(!chip) return;
+    bar.querySelectorAll(".f-chip").forEach(function(c){ c.classList.remove("on"); });
+    chip.classList.add("on");
+    var f = chip.getAttribute("data-f");
+    document.querySelectorAll(".news-card").forEach(function(card){
+      var show = (f === "all") || (card.getAttribute("data-cat") === f);
+      card.style.display = show ? "" : "none";
+      if(show) card.classList.add("on");
+    });
+  });
+})();
+
+// ---- add to home screen ----
+(function(){
+  var btn = document.getElementById("installBtn");
+  var modal = document.getElementById("installModal");
+  var closeB = document.getElementById("installClose");
+  var deferred = null;
+
+  if(window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true){
+    btn.style.display = "none"; // すでにホームから起動中
+  }
+  window.addEventListener("beforeinstallprompt", function(e){
+    e.preventDefault();
+    deferred = e;
+  });
+  btn.addEventListener("click", function(){
+    if(deferred){
+      deferred.prompt();
+      deferred.userChoice.then(function(){ deferred = null; });
+      return;
+    }
+    var ua = navigator.userAgent;
+    var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var android = /Android/.test(ua);
+    document.getElementById("howIos").style.display = ios ? "block" : "none";
+    document.getElementById("howAndroid").style.display = android ? "block" : "none";
+    document.getElementById("howPc").style.display = (!ios && !android) ? "block" : "none";
+    modal.hidden = false;
+  });
+  closeB.addEventListener("click", function(){ modal.hidden = true; });
+  modal.addEventListener("click", function(e){ if(e.target === modal) modal.hidden = true; });
+  window.addEventListener("appinstalled", function(){
+    btn.textContent = "ついかできました";
+    if(window.__confetti) window.__confetti();
+    setTimeout(function(){ btn.style.display = "none"; }, 2600);
+  });
+  if("serviceWorker" in navigator && location.protocol.indexOf("http") === 0){
+    navigator.serviceWorker.register("./sw.js").catch(function(){});
+  }
+})();
+</script>
+</body>
+</html>
